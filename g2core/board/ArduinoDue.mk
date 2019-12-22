@@ -23,6 +23,15 @@ endif
 ##########
 # BOARDs for use directly from the make command line (with default settings) or by CONFIGs.
 
+ifeq("$(BOARD)","pucciprinter")
+    # This is a due with a PucciPrinter setup. We'll use the Due platform, but set defines
+    # for the code to get the pinout right.
+
+    BASE_BOARD = g2core-due
+    DEVICE_DEFINES += MOTATE_BOARD="pucciprinter"
+    DEVICE_DEFINES += SETTIGNS_FILE=$(SETTINGS_FILE)
+endif
+
 ifeq ("$(BOARD)","gShield")
     # This is a due with a Synthetos gShield. We'll use the Due platform, but set defines
     # for the code to get the pinout right.

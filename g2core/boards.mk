@@ -25,6 +25,16 @@
 #   make CONFIG=PrintrbotPlus BOARD=g2ref-a
 
 ##########
+# Puccilabs configs:
+
+ifeq("$(CONFIG)",PucciPrinter)
+    ifeq("$(BOARD)","NONE")
+        BOARD=gShield
+    endif
+    SETTIGNS_FILE="settings_puccilabs_printer.h"
+endif
+
+
 # V9-based configs:
 
 ifeq ("$(CONFIG)","ShapeokoDualY")
