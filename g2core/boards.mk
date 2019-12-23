@@ -31,7 +31,7 @@ ifeq("$(CONFIG)",PucciPrinter)
     ifeq("$(BOARD)","NONE")
         BOARD=gShield
     endif
-    SETTIGNS_FILE="settings_puccilabs_printer.h"
+    SETTIGNS_FILE="settings_pucciprinter.h"
 endif
 
 
