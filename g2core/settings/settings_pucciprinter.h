@@ -39,118 +39,75 @@
 
 //**** GLOBAL / GENERAL SETTINGS ******************************************************
 
-#define JUNCTION_INTEGRATION_TIME   0.75                    // cornering - usually between 0.5 and 2.0 (higher is faster)
-#define CHORDAL_TOLERANCE           0.01                    // chordal accuracy for arc drawing (in mm)
-
-#define SOFT_LIMIT_ENABLE           0                       // 0=off, 1=on
-#define HARD_LIMIT_ENABLE           1                       // 0=off, 1=on
-#define SAFETY_INTERLOCK_ENABLE     1                       // 0=off, 1=on
-
 #define SPINDLE_PAUSE_ON_HOLD       true
 #define SPINDLE_DWELL_TIME          1.0
 
 #define COOLANT_PAUSE_ON_HOLD       false
 
 // Communications and reporting settings
-
-#define COMM_MODE                   JSON_MODE               // one of: TEXT_MODE, JSON_MODE
-#define XIO_ENABLE_FLOW_CONTROL FLOW_CONTROL_RTS            // FLOW_CONTROL_OFF, FLOW_CONTROL_RTS
-
-#define TEXT_VERBOSITY              TV_VERBOSE              // one of: TV_SILENT, TV_VERBOSE
-#define JSON_VERBOSITY              JV_MESSAGES             // one of: JV_SILENT, JV_FOOTER, JV_CONFIGS, JV_MESSAGES, JV_LINENUM, JV_VERBOSE
-#define QUEUE_REPORT_VERBOSITY      QR_OFF                  // one of: QR_OFF, QR_SINGLE, QR_TRIPLE
-
-#define STATUS_REPORT_VERBOSITY     SR_FILTERED             // one of: SR_OFF, SR_FILTERED, SR_VERBOSE
-#define STATUS_REPORT_MIN_MS        100                     // milliseconds - enforces a viable minimum
-#define STATUS_REPORT_INTERVAL_MS   250                     // milliseconds - set $SV=0 to disable
 #define MARLIN_COMPAT_ENABLED       true
-
-#define STATUS_REPORT_DEFAULTS "line","posx","posy","posz","posa","feed","vel","unit","coor","dist","frmo","momo","stat"
-// Alternate SRs that report in drawable units
-//#define STATUS_REPORT_DEFAULTS "line","vel","mpox","mpoy","mpoz","mpoa","coor","ofsa","ofsx","ofsy","ofsz","dist","unit","stat","homz","homy","homx","momo"
-
-// Gcode startup defaults
-#define GCODE_DEFAULT_UNITS         MILLIMETERS             // MILLIMETERS or INCHES
-#define GCODE_DEFAULT_PLANE         CANON_PLANE_XY          // CANON_PLANE_XY, CANON_PLANE_XZ, or CANON_PLANE_YZ
-#define GCODE_DEFAULT_COORD_SYSTEM  G54                     // G54, G55, G56, G57, G58 or G59
-#define GCODE_DEFAULT_PATH_CONTROL  PATH_CONTINUOUS
-#define GCODE_DEFAULT_DISTANCE_MODE ABSOLUTE_DISTANCE_MODE
-
 
 // *** motor settings ************************************************************************************
 
-#define MOTOR_POWER_MODE            MOTOR_POWERED_IN_CYCLE  // default motor power mode (see cmMotorPowerMode in stepper.h)
-#define MOTOR_POWER_TIMEOUT         5.00                    // motor power timeout in seconds
-#define MOTOR_STEPS_REV             4096
-#define MOTOR_DEG_STEP              0.08789
+#define M_POWER_MODE                MOTOR_ALWAYS_POWERED  // default motor power mode (see cmMotorPowerMode in stepper.h)
+//#define M_STEPS_MM                  1024
+#define M_DEG_STEP                  0.087890625
 
 
 #define M1_MOTOR_MAP                AXIS_X_EXTERNAL         // 1ma
-#define M1_STEP_ANGLE               MOTOR_DEG_STEP          // 1sa
+#define M1_STEP_ANGLE               M_DEG_STEP          // 1sa
 #define M1_TRAVEL_PER_REV           4                       // 1tr
-#define M1_STEPS_PER_UNIT           MOTOR_STEPS_REV         // 1su
-#define M1_MICROSTEPS               1                       // 1mi        1,2,4,8,16,32
-#define M1_POLARITY                 1                       // 1po        0=normal, 1=reversed
-#define M1_POWER_MODE               MOTOR_POWER_MODE        // 1pm        standard
-#define M1_POWER_LEVEL              0.0                     // 1pl:   0.0=no power, 1.0=max power
+#define M1_MICROSTEPS               1                       // {1mi:  1,2,4,8,    16,32 (G2 ONLY)
+//#define M1_STEPS_PER_UNIT           M_STEPS_MM         // 1su
+#define M1_POWER_MODE               M_POWER_MODE        // 1pm
 
 #define M2_MOTOR_MAP                AXIS_Y_EXTERNAL
-#define M2_STEP_ANGLE               MOTOR_DEG_STEP
+#define M2_STEP_ANGLE               M_DEG_STEP
 #define M2_TRAVEL_PER_REV           4
-#defien M2_STEPS_PER_UNIT           MOTOR_STEPS_REV
-#define M2_MICROSTEPS               1
-#define M2_POLARITY                 1
-#define M2_POWER_MODE               MOTOR_POWER_MODE
-#define M2_POWER_LEVEL              0.0
+//#define M2_STEPS_PER_UNIT           M_STEPS_MM
+#define M2_POWER_MODE               M_POWER_MODE
 
 #define M3_MOTOR_MAP                AXIS_Z_EXTERNAL
-#define M3_STEP_ANGLE               MOTOR_STEPS_REV
+#define M3_STEP_ANGLE               M_DEG_STEP
 #define M3_TRAVEL_PER_REV           4
-#define M3_STEPS_PER_UNIT           MOTOR_STEPS_REV
-#define M3_MICROSTEPS               1
-#define M3_POLARITY                 1
-#define M3_POWER_MODE               MOTOR_POWER_MODE
-#define M3_POWER_LEVEL              0.0
+//#define M3_STEPS_PER_UNIT           M_STEPS_MM
+#define M3_POWER_MODE               M_POWER_MODE
 
 #define M4_MOTOR_MAP                AXIS_A_EXTERNAL
-#define M4_STEP_ANGLE               MOTOR_DEG_STEP
-#define M4_TRAVEL_PER_REV           360            // degrees moved per motor rev
-#define M4_MICROSTEPS               1
-#define M4_POLARITY                 0
-#define M4_POWER_MODE               MOTOR_POWER_MODE
-#define M4_POWER_LEVEL              0.0
+#define M4_STEP_ANGLE               M_DEG_STEP
+#define M4_POWER_MODE               M_POWER_MODE
 
 #define M5_MOTOR_MAP                AXIS_B_EXTERNAL
-#define M5_STEP_ANGLE               MOTOR_DEG_STEP
+#define M5_STEP_ANGLE               M_DEG_STEP
 #define M5_TRAVEL_PER_REV           360            // degrees moved per motor rev
 #define M5_MICROSTEPS               1
 #define M5_POLARITY                 0
-#define M5_POWER_MODE               MOTOR_POWER_MODE
+#define M5_POWER_MODE               M_POWER_MODE
 #define M5_POWER_LEVEL              0.0
 
 #define M6_MOTOR_MAP                AXIS_C_EXTERNAL
-#define M6_STEP_ANGLE               MOTOR_DEG_STEP
+#define M6_STEP_ANGLE               M_DEG_STEP
 #define M6_TRAVEL_PER_REV           360            // degrees moved per motor rev
 #define M6_MICROSTEPS               1
 #define M6_POLARITY                 0
-#define M6_POWER_MODE               MOTOR_POWER_MODE
+#define M6_POWER_MODE               M_POWER_MODE
 #define M6_POWER_LEVEL              0.375
 
 // *** axis settings **********************************************************************************
 
 #define X_AXIS_MODE                 AXIS_STANDARD           // xam  see canonical_machine.h cmAxisMode for valid values
-#define X_VELOCITY_MAX              20000                   // xvm  G0 max velocity in mm/min
+#define X_VELOCITY_MAX              250.0                   // xvm  G0 max velocity in mm/min
 #define X_FEEDRATE_MAX              X_VELOCITY_MAX          // xfr  G1 max feed rate in mm/min
-#define X_TRAVEL_MIN                0                       // xtn  minimum travel - used by soft limits and homing
-#define X_TRAVEL_MAX                212                     // xtm  travel between switches or crashes
+//#define X_TRAVEL_MIN                0                       // xtn  minimum travel - used by soft limits and homing
+//#define X_TRAVEL_MAX                212                     // xtm  travel between switches or crashes
 #define X_JERK_MAX                  40000                   // xjm  yes, that's "100 billion" mm/(min^3)
 #define X_JERK_HIGH_SPEED           X_JERK_MAX              // xjh
-#define X_HOMING_INPUT              1                       // xhi  input used for homing or 0 to disable
-#define X_HOMING_DIRECTION          0                       // xhd  0=search moves negative, 1= search moves positive
-#define X_SEARCH_VELOCITY           3000                    // xsv  move in negative direction
-#define X_LATCH_VELOCITY            200                     // xlv  mm/min
-#define X_LATCH_BACKOFF             10                      // xlb  mm
-#define X_ZERO_BACKOFF              3                       // xzb  mm
+//#define X_HOMING_INPUT              1                       // xhi  input used for homing or 0 to disable
+//#define X_HOMING_DIRECTION          0                       // xhd  0=search moves negative, 1= search moves positive
+//#define X_SEARCH_VELOCITY           3000                    // xsv  move in negative direction
+//#define X_LATCH_VELOCITY            200                     // xlv  mm/min
+//#define X_LATCH_BACKOFF             10                      // xlb  mm
+//#define X_ZERO_BACKOFF              3                       // xzb  mm
 
 #define Y_AXIS_MODE                 AXIS_STANDARD
 #define Y_VELOCITY_MAX              20000

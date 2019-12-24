@@ -23,7 +23,7 @@ endif
 ##########
 # BOARDs for use directly from the make command line (with default settings) or by CONFIGs.
 
-ifeq("$(BOARD)","pucciprinter")
+ifeq ("$(BOARD)","pucciprinter")
     # This is a due with a PucciPrinter setup. We'll use the Due platform, but set defines
     # for the code to get the pinout right.
 

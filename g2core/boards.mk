@@ -27,11 +27,11 @@
 ##########
 # Puccilabs configs:
 
-ifeq("$(CONFIG)",PucciPrinter)
-    ifeq("$(BOARD)","NONE")
+ifeq ("$(CONFIG)","PucciPrinter")
+    ifeq ("$(BOARD)","NONE")
         BOARD=gShield
     endif
-    SETTIGNS_FILE="settings_pucciprinter.h"
+    SETTINGS_FILE="settings_pucciprinter.h"
 endif
 
 
@@ -172,4 +172,3 @@ endif
 
 
 include $(wildcard ./board/$(STAR).mk)
-
